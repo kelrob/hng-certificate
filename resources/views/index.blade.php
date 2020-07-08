@@ -11,7 +11,7 @@
 </head>
 <body>
 <section>
-    <form action="{{route('certRquest')}}" method="post">
+    <form action="{{route('certRequest')}}" method="post">
         @csrf
         <h2>Get a HNG Certificate</h2>
 
