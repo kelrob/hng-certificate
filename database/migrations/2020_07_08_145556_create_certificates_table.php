@@ -22,6 +22,7 @@ class CreateCertificatesTable extends Migration
             $table->integer('download_count')->default(0);
             $table->string('send_mail')->nullable();
             $table->string('unique_code', 100)->unique()->nullable();
+            $table->boolean('blocked')->default(0);
             $table->timestamps();
         });
     }
