@@ -19,8 +19,9 @@ class CreateCertificatesTable extends Migration
             $table->string('email', 200);
             $table->string('track', 100);
             $table->integer('certificate_style');
-            $table->integer('download_count');
-            $table->string('unique_code', 100);
+            $table->integer('download_count')->default(0);
+            $table->string('send_mail')->nullable();
+            $table->string('unique_code', 100)->unique()->nullable();
             $table->timestamps();
         });
     }

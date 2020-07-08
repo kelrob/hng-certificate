@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'Windsong';
+    src: url('./fonts/Windsong.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #FAFAFA;
+}
+
+
+.certificate-wrapper {
+    width: 1152px;
+    min-height: 100vh;
+    height: 100%;
+    margin: auto;
+    display: flex;
+
+    aside {
+        background-image: url('./images/Group\ 11.svg');
+        width: 374px;
+
+        div {
+            padding-top: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h2 {
+                font-family: 'Manrope', sans-serif;
+                font-weight: 600;
+                font-size: 1.875rem;
+                line-height: 41px;
+                color: white;
+                margin-left: 15px;
+            }
+        }
+    }
+
+    main {
+        background-color: #ffffff;
+        overflow: hidden;
+
+        .certificate {
+            padding: 44px 80px 10px;
+
+            .user-wrapper {
+                font-family: Manrope;
+
+                h4 {
+                    font-weight: normal;
+                    font-size: 1.563rem;
+                    line-height: 34px;
+                }
+    
+                .name {
+                    font-family: Playfair Display;
+                    font-weight: normal;
+                    font-size: 5rem;
+                    line-height: 107px;
+                    margin-bottom: 15px;
+                }
+
+                p {
+                    font-weight: normal;
+                    font-size: 1.38rem;
+                    line-height: 30px;
+                    margin-bottom: 20px;
+                }
+
+                .track {
+                    font-weight: normal;
+                    font-size: 2.94rem;
+                    line-height: 64px;
+                }
+            }
+        }
+
+        .ceo-wrapper {
+            margin-top: 95px;
+            font-family: Manrope;
+
+            .signature {
+                font-family: "Windsong", sans-serif;
+                font-weight: normal;
+                font-size: 4.4rem;
+                line-height: 50px;
+                color: #170C0C;
+                margin: 0;
+            }
+
+            h4 {
+                font-size: 1.56rem;
+                font-weight: normal;
+                line-height: 34px;
+                margin-bottom: 30px;
+            }
+
+            p {
+                font-size: 1.063rem;
+                font-weight: normal;
+                line-height: 23px;
+                margin-bottom: 6px;
+            }
+        }
+    }
+}
