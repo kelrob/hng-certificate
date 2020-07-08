@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 //Auth::routes();
 
-Route::get('hng-admin-login', 'Auth\LoginController@showLoginForm');
+Route::get('hng-admin-login', 'Auth\LoginController@showLoginForm')->name('hng-admin-login');
 Route::post('hng-admin-login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
