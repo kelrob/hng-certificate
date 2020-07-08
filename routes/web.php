@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('index');
 });
+
+//Auth::routes();
+
+Route::get('hng-admin-login', 'Auth\LoginController@showLoginForm');
+Route::post('hng-admin-login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('hng-admin-register', 'Auth\RegisterController@showRegistrationForm');
+Route::post('hng-admin-register', 'Auth\RegisterController@register');
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/change-download-status/{id}/{status}', 'HomeController@changeDownloadStatus');
