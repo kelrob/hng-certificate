@@ -17,7 +17,7 @@
         <h3>Name: <span id="name">{{ $certificate->owner }}</span></h3>
         <h3>Track: <span id="track">{{ $certificate->track }}</span></h3>
         <h3>Email: <span id="email">{{ $certificate->email }}</span></h3>
-        <h3>Date Generated: <span id="email">{{ $certificate->created_at->format('l, M d, Y') }}</span></h3>
+        <h3>Date Generated: <span id="email">{{ Carbon\Carbon::parse($certificate->created_at)->format('l, M d, Y') }}</span></h3>
         <h3>Status: <span id="verified" class="verified">Verified</span></h3>
     </div>
 </section>
