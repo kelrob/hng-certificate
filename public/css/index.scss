@@ -1,0 +1,192 @@
+@font-face {
+    font-family: 'Windsong';
+    src: url('./fonts/Windsong.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Manrope, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FAFAFA;
+    background-image: url('./images/Group\ 8.svg');
+    background-repeat: no-repeat;
+    background-position: top right;
+
+    @media screen and (max-width: 814px) { 
+        background-image: url('./images/Group\ 9.svg');
+    }
+
+    @media screen and (max-width: 814px) { 
+        background-image: none;
+    }
+}
+
+section {
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px 20px 60px;
+
+    @media screen and (min-width: 600px) { 
+        padding: 50px 60px 60px;
+    }
+
+    @media screen and (min-width: 814px) { 
+        padding: 90px 50px 60px;
+    }
+
+    @media screen and (min-width: 1200px) { 
+        padding: 130px 123px 60px;
+    }
+
+    form {
+
+        h2 {
+            font-weight: 500;
+            font-size: 1.5rem;
+            line-height: 48px;
+            text-align: center;
+
+            @media screen and (min-width: 814px) { 
+                font-size: 36px;
+                text-align: left;
+            }
+        }
+
+        label {
+            font-size: 1.125rem;
+            line-height: 24px;
+        }
+
+        .row {
+
+            aside {
+                display: grid;
+                grid-row-gap: 15px;
+                margin-top: 15px;
+
+                .design-wrapper {
+                    display: flex;
+                    align-items: center;
+
+                    .image-design {
+                        margin-left: 10px;
+                        width: 100%;
+                    }
+                }
+
+                @media screen and (min-width: 400px) {
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-column-gap: 10px;
+                }
+            }
+
+            @media screen and (min-width: 600px) {
+
+                .design-text {
+                    display: block;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+
+                .design-wrapper {
+                   justify-self: center;
+                }
+            }
+
+            main {
+                margin-top: 40px;
+
+                .form-group {
+                    margin-bottom: 25px;
+
+                    input[type="text"],
+                    input[type='email'],
+                    select {
+                        width: 100%;
+                        background: #FFFFFF;
+                        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+                        border-radius: 5px;
+                        outline: none;
+                        border: none;
+                        padding: 18px 20px;
+                        margin-top: 8px;
+                        font-size: 18px;
+                        line-height: 24px;
+                        color: rgba(0, 0, 0, 0.5);
+                    }
+
+                    input::placeholder {
+                        color: rgba(0, 0, 0, 0.5);
+                    }
+
+                    input[type="checkbox"] {
+                        width: 25px;
+                        height: 25px;
+                        border: 1px solid #1FB2F8;
+                        border-radius: 5px;
+                        margin-right: 10px;
+                    }
+
+                    &.check {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+
+                button {
+                    outline: none;
+                    border: none;
+                    background: #1FB2F8;
+                    box-shadow: 0px 0px 25px rgba(31, 178, 248, 0.2);
+                    border-radius: 5px;
+                    max-width: 163px;
+                    width: 100%;
+                    padding: 18px 0;
+                    font-weight: 500;
+                    font-size: 1.125rem;
+                    line-height: 24px;
+                    color: #FFFFFF;
+                    margin-top: 38px;
+                    cursor: pointer;
+                }
+            }
+
+            @media screen and (min-width: 814px) { 
+               display: grid;
+               grid-template-columns: repeat(2, 1fr);
+               grid-column-gap: 50px;
+               margin-top: 40px;
+
+               .design {
+                   order: 2;
+
+                   .design-text {
+                        text-align: left;
+                    }
+
+                    .design-wrapper {
+                        justify-self: flex-start;
+                    }
+               }
+
+               main {
+                   margin-top: 0;
+                   max-width: 400px;
+               }
+            }
+
+            @media screen and (min-width: 1200px) { 
+                grid-template-columns: 40% 60%;
+
+                aside {
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-column-gap: 30px;
+                }
+            }
+        }
+    }
+}
