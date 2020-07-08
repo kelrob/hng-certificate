@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'Windsong';
+  src: url("./fonts/Windsong.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Manrope, sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #FAFAFA;
+  background-image: url("../images/Group 8.svg");
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+@media screen and (max-width: 814px) {
+  body {
+    background-image: url("../images/Group 9.svg");
+  }
+}
+
+@media screen and (max-width: 814px) {
+  body {
+    background-image: none;
+  }
+}
+
+section {
+  max-width: 1400px;
+  margin: auto;
+  padding: 30px 20px 60px;
+}
+
+@media screen and (min-width: 600px) {
+  section {
+    padding: 50px 60px 60px;
+  }
+}
+
+@media screen and (min-width: 814px) {
+  section {
+    padding: 90px 50px 60px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  section {
+    padding: 130px 123px 60px;
+  }
+}
+
+section form h2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 48px;
+  text-align: center;
+}
+
+@media screen and (min-width: 814px) {
+  section form h2 {
+    font-size: 36px;
+    text-align: left;
+  }
+}
+
+section form label {
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+
+section form .row aside {
+  display: -ms-grid;
+  display: grid;
+  grid-row-gap: 15px;
+  margin-top: 15px;
+}
+
+section form .row aside .design-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section form .row aside .design-wrapper .image-design {
+  margin-left: 10px;
+  width: 100%;
+}
+
+@media screen and (min-width: 400px) {
+  section form .row aside {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  section form .row .design-text {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  section form .row .design-wrapper {
+    -ms-grid-column-align: center;
+        justify-self: center;
+  }
+}
+
+section form .row main {
+  margin-top: 40px;
+}
+
+section form .row main .form-group {
+  margin-bottom: 25px;
+}
+
+section form .row main .form-group input[type="text"],
+section form .row main .form-group input[type='email'],
+section form .row main .form-group select {
+  width: 100%;
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 18px 20px;
+  margin-top: 8px;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+section form .row main .form-group input::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+section form .row main .form-group input:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+section form .row main .form-group input::-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+section form .row main .form-group input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+section form .row main .form-group input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #1FB2F8;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+section form .row main .form-group.check {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section form .row main button {
+  outline: none;
+  border: none;
+  background: #1FB2F8;
+  -webkit-box-shadow: 0px 0px 25px rgba(31, 178, 248, 0.2);
+          box-shadow: 0px 0px 25px rgba(31, 178, 248, 0.2);
+  border-radius: 5px;
+  max-width: 163px;
+  width: 100%;
+  padding: 18px 0;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin-top: 38px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 814px) {
+  section form .row {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 50px;
+    margin-top: 40px;
+  }
+  section form .row .design {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  section form .row .design .design-text {
+    text-align: left;
+  }
+  section form .row .design .design-wrapper {
+    justify-self: flex-start;
+  }
+  section form .row main {
+    margin-top: 0;
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  section form .row {
+    -ms-grid-columns: 40% 60%;
+        grid-template-columns: 40% 60%;
+  }
+  section form .row aside {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 30px;
+  }
+}
+/*# sourceMappingURL=index.css.map */
