@@ -11,16 +11,16 @@ class certificateController extends Controller
     //
     public function logRequest(Request $request)
     {
-
         $validator = Validator::make($request->all(),
             [
                 'certificate_style' => 'required',
                 'email' => 'required|email',
                 'owner' => 'required',
                 'track' => 'required',
+                'certificate_style'=> 'required'
             ]);
         if ($validator->fails()) {
-            return redirect()->back()->with('error','filling required info');
+            return redirect()->back()->withErrors($validator);
         }else {
             $check_email = Certificate::where(['email' => $request->input('email')])->first();
             if ($check_email) {

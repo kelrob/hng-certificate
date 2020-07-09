@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
         <!-- <link rel="stylesheet" href="index.css"> -->
         <title>HNG | CERTIFICATE</title>
 
-
         <style>
             @font-face {
   font-family: 'Windsong';
@@ -21,69 +19,63 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
   background-color: #dedede;
 }
 
-.certificate-wrapper {
+section {
   width: 1152px;
   min-height: 100vh;
   height: 100%;
   margin: auto;
+  background-image: url("https://res.cloudinary.com/dafsch2zs/image/upload/v1594247482/Certificate_4_ly2h9d.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.certificate-wrapper aside {
-  background-image: url("https://res.cloudinary.com/dafsch2zs/image/upload/v1594246923/Group_11_j9fp5t.png");
-  width: 374px;
-}
-
-.certificate-wrapper aside div {
-  padding-top: 44px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.certificate-wrapper aside div h2 {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 600;
-  font-size: 1.875rem;
-  line-height: 41px;
-  color: white;
-  margin-left: 15px;
+section main .certificate,
+section main .ceo-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
 }
 
-.certificate-wrapper main {
-  background-color: #ffffff;
-  overflow: hidden;
-}
-
-.certificate-wrapper main .certificate {
-  padding: 44px 80px 10px;
-}
-
-.certificate-wrapper main .certificate .user-wrapper {
+section main .certificate .user-wrapper {
   font-family: Manrope;
 }
 
-.certificate-wrapper main .certificate .user-wrapper h4 {
+section main .certificate .user-wrapper h4 {
   font-weight: normal;
   font-size: 1.563rem;
-  line-height: 34px;
+  line-height: 24px;
 }
 
-.certificate-wrapper main .certificate .user-wrapper .name {
+section main .certificate .user-wrapper .name {
   font-family: Playfair Display;
   font-weight: normal;
   font-size: 5rem;
@@ -91,25 +83,25 @@ body {
   margin-bottom: 15px;
 }
 
-.certificate-wrapper main .certificate .user-wrapper p {
+section main .certificate .user-wrapper p {
   font-weight: normal;
   font-size: 1.38rem;
   line-height: 30px;
   margin-bottom: 20px;
 }
 
-.certificate-wrapper main .certificate .user-wrapper .track {
+section main .certificate .user-wrapper .track {
   font-weight: normal;
   font-size: 2.94rem;
-  line-height: 64px;
+  line-height: 44px;
 }
 
-.certificate-wrapper main .ceo-wrapper {
-  margin-top: 95px;
+section main .ceo-wrapper {
+  margin-top: 90px;
   font-family: Manrope;
 }
 
-.certificate-wrapper main .ceo-wrapper .signature {
+section main .ceo-wrapper .signature {
   font-family: "Windsong", sans-serif;
   font-weight: normal;
   font-size: 4.4rem;
@@ -118,14 +110,14 @@ body {
   margin: 0;
 }
 
-.certificate-wrapper main .ceo-wrapper h4 {
+section main .ceo-wrapper h4 {
   font-size: 1.56rem;
   font-weight: normal;
   line-height: 34px;
   margin-bottom: 30px;
 }
 
-.certificate-wrapper main .ceo-wrapper p {
+section main .ceo-wrapper p {
   font-size: 1.063rem;
   font-weight: normal;
   line-height: 23px;
@@ -135,14 +127,7 @@ body {
         </style>
     </head>
     <body>
-        <section class="certificate-wrapper">
-            <aside>
-                <div>
-                    <img src="https://res.cloudinary.com/dafsch2zs/image/upload/v1594246923/logo_wscqqj.png" />
-                    <h2>HNG Internship</h2>
-                </div>
-            </aside>
-
+        <section>
             <main>
                 <div class="certificate">
                     <div class="user-wrapper">
