@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Keygen;
 use Keygen\Keygen as GenKey;
 use Validator;
+use App\Notifications\SendDownloadLink as Sendlink;
 
 class certificateController extends Controller
 {
@@ -30,14 +31,15 @@ class certificateController extends Controller
 
             if ($check_email) {
                 $certificate_id = $check_email['id'];
-
-                if ($request->input('send_email')) {
+                $downloadCounter = $check_email['download_count'];
+                if ($request->input('send_email') !== "" ) {
                     $send_to_mail = $request->input('send_email');
+                    $check_email->notify(new Sendlink("test/{$certificate_id}", $request->owner));
                 } else {
                     $send_to_mail = null;
                 }
 
-                Certificate::query()->where('id', $certificate_id)->update(['owner' => $request->input('owner'), 'track' => $request->input('track'), 'certificate_style' => $request->input('certificate_style'), 'send_mail' => $send_to_mail]);
+                Certificate::query()->where('id', $certificate_id)->update(['owner' => $request->input('owner'), 'track' => $request->input('track'), 'certificate_style' => $request->input('certificate_style'), 'send_mail' => $send_to_mail, 'download_count' => $downloadCounter + 1]);
 
                 return redirect()->action(
                     'PDFgenerator@generate', ['id' => $certificate_id]
@@ -56,7 +58,6 @@ class certificateController extends Controller
     {
 
         $date = date('l, M d, Y');
-
         $validator = Validator::make($request->all(), [
             'certificate_style' => 'required',
             'email' => 'required|email',
@@ -74,14 +75,18 @@ class certificateController extends Controller
             $certificate->track = $request->track;
             $certificate->certificate_style = $request->certificate_style;
             $certificate->unique_code = $this->generateID();
-
+            $code = $certificate->unique_code;
+            $url = "https://hng.tech/verify-cert/{$code}";
             $countEmail = Certificate::where('email', $request->email)->count();
 
             if ($countEmail > 0) {
                 return Redirect::back()->withErrors(['You have already downloaded your certificate', 'The Message']);
             } else {
                 if ($certificate->save()) {
-
+                  if ($request->input('send_email') !== "" ) {
+                    //send link
+                    $certificate->notify(new Sendlink("/getcert/{$certificate_id}", $request->owner));
+                  }
                     $certificateStyle1 = "<!DOCTYPE html>
 <html lang=\"en\">
 
@@ -240,7 +245,7 @@ body {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: {$url}</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -409,7 +414,7 @@ body {
           <p class=\"signature\">Seyi Onifade</p>
           <h4>Seyi Onifade - CEO, HNG Internship</h4>
           <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-          <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+          <p>Confirm at: {$url}</p>
           <p>Certificate Issued on: $date</p>
         </div>
       </div>
@@ -562,7 +567,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: {$url}</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -714,7 +719,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: {$url}</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -866,7 +871,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: {$url}</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
