@@ -239,7 +239,7 @@ body {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: <a href='route'></a></p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -408,7 +408,7 @@ body {
           <p class=\"signature\">Seyi Onifade</p>
           <h4>Seyi Onifade - CEO, HNG Internship</h4>
           <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-          <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+          <p>Confirm at: <a href='route'></a></p>
           <p>Certificate Issued on: $date</p>
         </div>
       </div>
@@ -561,7 +561,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: <a href='route'></a></p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -713,7 +713,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: <a href='route'></a></p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -865,7 +865,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: <a href='route'></a></p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
