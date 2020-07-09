@@ -68,26 +68,35 @@ class certificateController extends Controller
         if ($validator->fails()) {
             return Redirect::back()->withErrors(['All fields are required', 'The Message']);
         } else {
-            $certificate = new Certificate();
+            $payload = [
+                'owner' => $request->owner,
+                'email' => $request->email,
+                'track' => $request->track,
+                'certificate_style' => $request->certificate_style
+            ];
 
-            $certificate->owner = $request->owner;
-            $certificate->email = $request->email;
-            $certificate->track = $request->track;
-            $certificate->certificate_style = $request->certificate_style;
-            $certificate->unique_code = $this->generateID();
+            $certificate = Certificate::where('email', $request->email)->first();
+
+            if($certificate){
+                $certificate->update($payload);
+            }else{
+                $certificate = Certificate::create(array_merge($payload, ['unique_code' => $this->generateID() ]));
+            }
+
             $code = $certificate->unique_code;
             $url = route('verify',['code'=>$code]);
-            $countEmail = Certificate::where('email', $request->email)->count();
 
-            if ($countEmail > 0) {
-                return Redirect::back()->withErrors(['You have already downloaded your certificate.', 'The Message']);
+            if ($certificate->blocked === 1) {
+                return Redirect::back()->withErrors(['You can no longer download this certificate.. Contact support for more information.', 'The Message']);
             } else {
-                if ($certificate->save()) {
+
                   if ($request->input('send_email') !== "" ) {
                     //send link
                     $certificate->notify(new Sendlink("download-link/$request->email", $request->owner));
                   }
-                    $certificateStyle1 = "<!DOCTYPE html>
+                $certificate->increment('download_count');
+
+                $certificateStyle1 = "<!DOCTYPE html>
 <html lang=\"en\">
 
     <head>
@@ -915,7 +924,6 @@ section main .ceo-wrapper p {
                             ->header('Content-Type', 'text/plain');
                     }
                 }
-            }
 
         }
 
@@ -945,14 +953,10 @@ section main .ceo-wrapper p {
         $date = Carbon::parse($certificate->created_at)->format('l, M d, Y');
         $code = $certificate->unique_code;
         $url = route('verify',['code'=>$code]);
-        if ($certificate->count() > 0) {
-            if ($certificate->blocked == 1) {
-                return 'You can no longer download this certificate. Contact Admin';
+            if ($certificate->blocked === 1) {
+                return 'You can no longer download this certificate.  Contact support for more information';
             } else {
-                $code = $certificate->unique_code;
-                $url = "https://hng.tech/verify-cert/{$code}";
-                $certificate->download_count = $certificate->download_count + 1;
-                if ($certificate->save()) {
+                $certificate->increment('download_count');
 
                     $certificateStyle1 = "<!DOCTYPE html>
 <html lang=\"en\">
@@ -1112,11 +1116,7 @@ body {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-<<<<<<< HEAD
-                        <p>Confirm at: { $url }</p>
-=======
                         <p>Confirm at: {$url}</p>
->>>>>>> b597aa6e9b316efb5b7205388bda55da29ae5c01
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -1785,9 +1785,7 @@ section main .ceo-wrapper p {
                         return response($why->getMessage(), $why->getCode())
                             ->header('Content-Type', 'text/plain');
                     }
-                }
             }
-        }
     }
 
     public function verify($code)
