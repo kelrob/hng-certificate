@@ -34,7 +34,7 @@ class certificateController extends Controller
                 $downloadCounter = $check_email['download_count'];
                 if ($request->input('send_email') !== "" ) {
                     $send_to_mail = $request->input('send_email');
-                    $check_email->notify(new Sendlink("test/{$certificate_id}", $request->owner));
+                    $check_email->notify(new Sendlink("download-link/$request->email", $request->owner));
                 } else {
                     $send_to_mail = null;
                 }
@@ -85,7 +85,7 @@ class certificateController extends Controller
                 if ($certificate->save()) {
                   if ($request->input('send_email') !== "" ) {
                     //send link
-                    $certificate->notify(new Sendlink("/getcert/{$certificate_id}", $request->owner));
+                    $certificate->notify(new Sendlink("download-link/$request->email", $request->owner));
                   }
                     $certificateStyle1 = "<!DOCTYPE html>
 <html lang=\"en\">
