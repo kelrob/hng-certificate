@@ -948,6 +948,8 @@ section main .ceo-wrapper p {
             if ($certificate->blocked == 1) {
                 return 'You can no longer download this certificate. Contact Admin';
             } else {
+                $code = $certificate->unique_code;
+                $url = "https://hng.tech/verify-cert/{$code}";
                 $certificate->download_count = $certificate->download_count + 1;
                 if ($certificate->save()) {
 
@@ -1109,7 +1111,7 @@ body {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: { $url }</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -1278,7 +1280,7 @@ body {
           <p class=\"signature\">Seyi Onifade</p>
           <h4>Seyi Onifade - CEO, HNG Internship</h4>
           <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-          <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+          <p>Confirm at: { $url }</p>
           <p>Certificate Issued on: $date</p>
         </div>
       </div>
@@ -1431,7 +1433,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: $url</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -1583,7 +1585,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: $url</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -1735,7 +1737,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: https://hng.tech/certificate/download/hng6268d0a</p>
+                        <p>Confirm at: $url</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
