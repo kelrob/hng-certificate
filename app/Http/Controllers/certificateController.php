@@ -74,7 +74,7 @@ class certificateController extends Controller
             }
             if($check_email){
                 if($check_email['track'] == $request->input('track')){
-                    Certificate::query()->where('id', $check_email['id'])->update(['owner' => $request->input('owner'), 'certificate_style' => $request->input('certificate_style')]);
+                    Certificate::query()->where('id', $check_email['id'])->update([ 'certificate_style' => $request->input('certificate_style')]);
                     $old_cert = Certificate::where(['email' => $request->input('email')])->first();
                     $code = $old_cert->unique_code;
                     $url = route('verify',['code'=>$code]);
@@ -119,7 +119,7 @@ class certificateController extends Controller
 
         try {
             // create the API client instance
-            $client = new \Pdfcrowd\HtmlToPdfClient("kelrob", "fa3c506937b9a51b2be94cdc66605830");
+            $client = new \Pdfcrowd\HtmlToPdfClient("boluakins", "debcf143e2b8ee726770d8269d269e42");
 
             // configure the conversion
             $client->setPageSize("A4");
