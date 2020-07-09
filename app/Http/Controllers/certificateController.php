@@ -68,26 +68,35 @@ class certificateController extends Controller
         if ($validator->fails()) {
             return Redirect::back()->withErrors(['All fields are required', 'The Message']);
         } else {
-            $certificate = new Certificate();
+            $payload = [
+                'owner' => $request->owner,
+                'email' => $request->email,
+                'track' => $request->track,
+                'certificate_style' => $request->certificate_style
+            ];
 
-            $certificate->owner = $request->owner;
-            $certificate->email = $request->email;
-            $certificate->track = $request->track;
-            $certificate->certificate_style = $request->certificate_style;
-            $certificate->unique_code = $this->generateID();
+            $certificate = Certificate::where('email', $request->email)->first();
+
+            if($certificate){
+                $certificate->update($payload);
+            }else{
+                $certificate = Certificate::create(array_merge($payload, ['unique_code' => $this->generateID() ]));
+            }
+
             $code = $certificate->unique_code;
             $url = route('verify',['code'=>$code]);
-            $countEmail = Certificate::where('email', $request->email)->count();
 
-            if ($countEmail > 0) {
-                return Redirect::back()->withErrors(['You have already downloaded your certificate', 'The Message']);
+            if ($certificate->blocked === 1) {
+                return Redirect::back()->withErrors(['You cannot download this certificate. Contact support for more information.', 'The Message']);
             } else {
-                if ($certificate->save()) {
+
                   if ($request->input('send_email') !== "" ) {
                     //send link
                     $certificate->notify(new Sendlink("download-link/$request->email", $request->owner));
                   }
-                    $certificateStyle1 = "<!DOCTYPE html>
+                $certificate->increment('download_count');
+
+                $certificateStyle1 = "<!DOCTYPE html>
 <html lang=\"en\">
 
     <head>
@@ -915,7 +924,6 @@ section main .ceo-wrapper p {
                             ->header('Content-Type', 'text/plain');
                     }
                 }
-            }
 
         }
 
