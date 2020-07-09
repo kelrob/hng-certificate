@@ -65,7 +65,7 @@ class certificateController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('error', 'filling required info');
+            return Redirect::back()->withErrors(['All fields are required', 'The Message']);
         } else {
             $certificate = new Certificate();
 
@@ -742,7 +742,7 @@ section main .ceo-wrapper p {
         <style>
             @font-face {
   font-family: 'Windsong';
-  src: url(\"https://res.cloudinary.com/dafsch2zs/raw/upload/v1594246379/Windsong_g2ci9z.ttff\");
+  src: url(\"https://res.cloudinary.com/dafsch2zs/raw/upload/v1594246379/Windsong_g2ci9z.ttf\");
 }
 
 * {
@@ -945,7 +945,7 @@ section main .ceo-wrapper p {
         if ($certificate) {
             return view('verify-certificate', compact('certificate'));
         } else {
-            return redirect('404');
+            return view('unverify-certificate');
         }
     }
 }
