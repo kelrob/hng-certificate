@@ -76,11 +76,11 @@ class certificateController extends Controller
             $certificate->certificate_style = $request->certificate_style;
             $certificate->unique_code = $this->generateID();
             $code = $certificate->unique_code;
-            $url = "https://hng.tech/verify-cert/{$code}";
+            $url = route('verify',['code'=>$code]);
             $countEmail = Certificate::where('email', $request->email)->count();
 
             if ($countEmail > 0) {
-                return Redirect::back()->withErrors(['You have already downloaded your certificate', 'The Message']);
+                return Redirect::back()->withErrors(['You have already downloaded your certificate.', 'The Message']);
             } else {
                 if ($certificate->save()) {
                   if ($request->input('send_email') !== "" ) {
@@ -943,7 +943,8 @@ section main .ceo-wrapper p {
         $certificate = Certificate::where('email', $email)->first();
 
         $date = Carbon::parse($certificate->created_at)->format('l, M d, Y');
-
+        $code = $certificate->unique_code;
+        $url = route('verify',['code'=>$code]);
         if ($certificate->count() > 0) {
             if ($certificate->blocked == 1) {
                 return 'You can no longer download this certificate. Contact Admin';
@@ -1111,7 +1112,11 @@ body {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
+<<<<<<< HEAD
                         <p>Confirm at: { $url }</p>
+=======
+                        <p>Confirm at: {$url}</p>
+>>>>>>> b597aa6e9b316efb5b7205388bda55da29ae5c01
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -1280,7 +1285,7 @@ body {
           <p class=\"signature\">Seyi Onifade</p>
           <h4>Seyi Onifade - CEO, HNG Internship</h4>
           <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-          <p>Confirm at: { $url }</p>
+          <p>Confirm at: {$url}</p>
           <p>Certificate Issued on: $date</p>
         </div>
       </div>
@@ -1433,7 +1438,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: $url</p>
+                        <p>Confirm at: {$url}</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -1585,7 +1590,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: $url</p>
+                        <p>Confirm at: {$url}</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>
@@ -1737,7 +1742,7 @@ section main .ceo-wrapper p {
                         <p class=\"signature\">Seyi Onifade</p>
                         <h4>Seyi Onifade - CEO, HNG Internship</h4>
                         <p>HNG Internship has confirmed the participation of this Individual in this program</p>
-                        <p>Confirm at: $url</p>
+                        <p>Confirm at: {$url}</p>
                         <p>Certificate Issued on: $date</p>
                     </div>
                 </div>

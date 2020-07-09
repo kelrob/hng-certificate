@@ -35,4 +35,4 @@ Route::post('hng-admin-register', 'Auth\RegisterController@register');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/change-download-status/{id}/{status}', 'HomeController@changeDownloadStatus');
 
-Route::get('/verify-cert/{code}', 'certificateController@verify');
+Route::get('/verify-cert/{code}', 'certificateController@verify')->name('verify');
