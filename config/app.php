@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class
 
     ],
 
@@ -232,6 +233,8 @@ return [
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
         'Keygen' => Keygen\Keygen::class,
         'PDF2' => Barryvdh\DomPDF\Facade::class,
+        'PDF3' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
     ],
 

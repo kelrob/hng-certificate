@@ -19,6 +19,7 @@ Route::get('/test/{id}','PDFgenerator@generate');
 Route::get('view', function (){
     return view('certificates.cert1');
 });
+Route::get('certificate/{unique_key}','certificateViews@index')->name('certView');
 
 //Auth::routes();
 
