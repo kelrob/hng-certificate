@@ -64,7 +64,7 @@ class certificateController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('error', 'filling required info');
+            return Redirect::back()->withErrors(['All fields are required', 'The Message']);
         } else {
             $certificate = new Certificate();
 

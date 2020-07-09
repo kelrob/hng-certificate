@@ -12,6 +12,11 @@
 <body>
 <section>
     <form action="{{route('certRequest')}}" method="post">
+        @if($errors->any())
+            <div class="alert alert-danger" style="padding: 2%; border-radius: 3px; margin-bottom: 2%; background-color: #f85d51; color: #fff;">
+                <p>{{$errors->first()}}</p>
+            </div>
+        @endif
         @csrf
         <h2>Get a HNG Certificate</h2>
 
@@ -58,11 +63,6 @@
 
             <main>
                 <div>
-                    @if($errors->any())
-                        <div class="alert alert-danger" style="padding: 2%; border-radius: 3px; margin-bottom: 2%; background-color: #f85d51; color: #fff;">
-                            <p>{{$errors->first()}}</p>
-                        </div>
-                    @endif
                     <div class="form-group">
                         <label for="name">Name*</label>
                         <input type="text" id="name" name="owner" required placeholder="Enter your name..." />
