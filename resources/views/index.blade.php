@@ -18,6 +18,9 @@
         <div class="row">
             <div class="design">
                 <label name="certificate_style" class="design-text">Select preferred certificate design*</label>
+                @if ($errors->has('certificate_style'))
+                <h4 class="invalid-feedback" role="alert">{{ $errors->first('certificate_style') }}</h4>
+                    @endif
                 <aside>
                     <div class="design-wrapper">
                         <input type="radio" id="design1" name="certificate_style" value=1>
@@ -61,21 +64,30 @@
                     <div class="form-group">
                         <label for="name">Name*</label>
                         <input type="text" id="name" name="owner" placeholder="Enter your name..." />
+                        @if ($errors->has('owner'))
+                <h4 class="invalid-feedback" role="alert">{{ $errors->first('owner') }}</h4>
+                    @endif
                     </div>
 
                     <div class="form-group">
                         <label for="track">Track*</label>
                         <select name="track">
-                            <option value="FE">Frontend Developer</option>
-                            <option value="BE">Backend Developer</option>
-                            <option value="MD">Mobile Developer</option>
-                            <option value="UX">UI/UX Developer</option>
+                            <option value="Frontend">Frontend Developer</option>
+                            <option value="Backend">Backend Developer</option>
+                            <option value="Mobile">Mobile Developer</option>
+                            <option value="UI/UX">UI/UX Developer</option>
                         </select>
+                        @if ($errors->has('track'))
+                <h4 class="invalid-feedback" role="alert">{{ $errors->first('track') }}</h4>
+                    @endif
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email*</label>
                         <input type="email" id="email" name="email" placeholder="Enter your email..." />
+                        @if ($errors->has('email'))
+                <h4 class="invalid-feedback" role="alert">{{ $errors->first('email') }}</h4>
+                    @endif
                     </div>
 
                     <div class="form-group check">
