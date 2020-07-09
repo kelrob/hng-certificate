@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::post('/getcert', 'certificateController@saveCertificate')->name('certRequest');
+Route::any('/getcert', 'certificateController@saveCertificate')->name('certRequest');
 Route::get('/test/{id}','PDFgenerator@generate');
 Route::get('view', function (){
     return view('certificates.cert1');
