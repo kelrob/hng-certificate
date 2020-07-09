@@ -60,22 +60,22 @@
                 <div>
                     <div class="form-group">
                         <label for="name">Name*</label>
-                        <input type="text" id="name" name="owner" placeholder="Enter your name..." />
+                        <input type="text" id="name" name="owner" required placeholder="Enter your name..." />
                     </div>
 
                     <div class="form-group">
                         <label for="track">Track*</label>
-                        <select name="track">
-                            <option value="FE">Frontend Developer</option>
-                            <option value="BE">Backend Developer</option>
-                            <option value="MD">Mobile Developer</option>
-                            <option value="UX">UI/UX Developer</option>
+                        <select name="track" required>
+                            <option value="Front Developer">Frontend Developer</option>
+                            <option value="Backend Developer">Backend Developer</option>
+                            <option value="Mobile Developer">Mobile Developer</option>
+                            <option value="UI/UX Developer">UI/UX Developer</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email*</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email..." />
+                        <input type="email" id="email" required name="email" placeholder="Enter your email..." />
                     </div>
 
                     <div class="form-group check">
@@ -83,7 +83,7 @@
                         <label for="send-email">Send certificate to my email</label>
                     </div>
 
-                    <button type="submit">Get Certificate</button>
+                    <button type="submit" class="btn btn-sm">Download</button>
                 </div>
             </main>
         </div>
