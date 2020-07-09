@@ -99,6 +99,8 @@ class certificateController extends Controller
                     //send link
                     $certificate->notify(new Sendlink("download-link/$request->email", $request->owner));
                   }
+                    
+                $certificate->increment('download_count');
                   return  $this->apidownload($certificate,$url,$date);
 
                 }
