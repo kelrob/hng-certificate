@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <label for="track">Track*</label>
                         <select name="track" required>
-                            <option value="Front Developer">Frontend Developer</option>
+                            <option value="Frontend Developer">Frontend Developer</option>
                             <option value="Backend Developer">Backend Developer</option>
                             <option value="Mobile Developer">Mobile Developer</option>
                             <option value="UI/UX Developer">UI/UX Developer</option>
