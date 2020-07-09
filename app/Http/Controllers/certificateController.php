@@ -76,7 +76,7 @@ class certificateController extends Controller
             $certificate->certificate_style = $request->certificate_style;
             $certificate->unique_code = $this->generateID();
             $code = $certificate->unique_code;
-            $url = "https://hng.tech/verify-cert/{$code}";
+            $url = route('verify',['code'=>$code]);
             $countEmail = Certificate::where('email', $request->email)->count();
 
             if ($countEmail > 0) {
@@ -944,7 +944,7 @@ section main .ceo-wrapper p {
 
         $date = Carbon::parse($certificate->created_at)->format('l, M d, Y');
         $code = $certificate->unique_code;
-        $url = "https://hng.tech/verify-cert/{$code}";
+        $url = route('verify',['code'=>$code]);
         if ($certificate->count() > 0) {
             if ($certificate->blocked == 1) {
                 return 'You can no longer download this certificate. Contact Admin';
