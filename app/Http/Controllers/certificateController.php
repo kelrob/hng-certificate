@@ -76,6 +76,7 @@ class certificateController extends Controller
                 if($check_email['track'] == $request->input('track')){
                     Certificate::query()->where('id', $check_email['id'])->update([ 'certificate_style' => $request->input('certificate_style')]);
                     $old_cert = Certificate::where(['email' => $request->input('email')])->first();
+                    $old_cert->increment('download_count');
                     $code = $old_cert->unique_code;
                     $url = route('verify',['code'=>$code]);
                     return  $this->apidownload($old_cert,$url,$date);
@@ -168,6 +169,7 @@ class certificateController extends Controller
         if($certificate->blocked == 1){
             return Redirect::to('/')->withErrors(['Account Blocked pls contact the admin', 'The Message']);
         }
+        $certificate->increment('download_count');
         return $this->apidownload($certificate,$url,$date);
     }
 
