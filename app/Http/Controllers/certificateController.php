@@ -44,7 +44,7 @@ class certificateController extends Controller
         }
     }
 
-    public function generateUniqueKey(){
+    public function generateUniqueKey() {
         $id = $this->generateID();
         // Ensure ID does not exist
         // Generate new one if ID already exists
@@ -54,8 +54,18 @@ class certificateController extends Controller
 
         return $id;
     }
-    public function generateID()
-    {
+
+    public function generateID() {
         return Keygen::numeric(7)->prefix(mt_rand(1, 9))->generate(true);
+    }
+
+    public function verify($code) {
+        $certificate = Certificate::where('unique_code', $code)->first();
+
+        if ($certificate) {
+            return view('verify-certificate', compact('certificate'));
+        } else {
+            return redirect('404');
+        }
     }
 }

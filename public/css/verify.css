@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'Windsong';
+    src: url("./fonts/Windsong.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Manrope, sans-serif;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FAFAFA;
+    background-image: url("../images/Group 8.svg");
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+
+@media screen and (max-width: 814px) {
+    body {
+        background-image: url("../images/Group 9.svg");
+    }
+}
+
+@media screen and (max-width: 814px) {
+    body {
+        background-image: none;
+    }
+}
+
+section {
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px 20px 0px;
+}
+
+@media screen and (min-width: 600px) {
+    section {
+        padding: 50px 60px 0px;
+    }
+}
+
+@media screen and (min-width: 814px) {
+    section {
+        padding: 90px 50px 0px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    section {
+        padding: 130px 123px 0px;
+    }
+}
+
+section div {
+    text-align: center;
+}
+
+section div h2 {
+    font-weight: 500;
+    font-size: 1.7rem;
+    line-height: 48px;
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 814px) {
+    section div h2 {
+        font-size: 36px;
+    }
+}
+
+section div h3 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #333333;
+    margin-bottom: 25px;
+}
+
+section div h3 span {
+    font-weight: normal;
+    margin-left: 25px;
+}
+
+section div .verified {
+    font-style: italic;
+    color: #1FB2F8;
+}
+
+section div .not-verified {
+    font-style: italic;
+    color: #F44F4F;
+}
+
+@media screen and (min-width: 814px) {
+    section div {
+        text-align: left;
+    }
+}
+/*# sourceMappingURL=index.css.map */
