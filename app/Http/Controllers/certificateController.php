@@ -87,7 +87,7 @@ class certificateController extends Controller
             $url = route('verify',['code'=>$code]);
 
             if ($certificate->blocked === 1) {
-                return Redirect::back()->withErrors(['You cannot download this certificate. Contact support for more information.', 'The Message']);
+                return Redirect::back()->withErrors(['You can no longer download this certificate.. Contact support for more information.', 'The Message']);
             } else {
 
                   if ($request->input('send_email') !== "" ) {
@@ -953,12 +953,10 @@ section main .ceo-wrapper p {
         $date = Carbon::parse($certificate->created_at)->format('l, M d, Y');
         $code = $certificate->unique_code;
         $url = route('verify',['code'=>$code]);
-        if ($certificate->count() > 0) {
-            if ($certificate->blocked == 1) {
-                return 'You can no longer download this certificate. Contact Admin';
+            if ($certificate->blocked === 1) {
+                return 'You can no longer download this certificate.  Contact support for more information';
             } else {
-                $certificate->download_count = $certificate->download_count + 1;
-                if ($certificate->save()) {
+                $certificate->increment('download_count');
 
                     $certificateStyle1 = "<!DOCTYPE html>
 <html lang=\"en\">
@@ -1787,9 +1785,7 @@ section main .ceo-wrapper p {
                         return response($why->getMessage(), $why->getCode())
                             ->header('Content-Type', 'text/plain');
                     }
-                }
             }
-        }
     }
 
     public function verify($code)
