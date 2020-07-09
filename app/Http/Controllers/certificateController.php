@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Certificate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Keygen;
 use Keygen\Keygen as GenKey;
 use Validator;
@@ -73,9 +74,14 @@ class certificateController extends Controller
             $certificate->certificate_style = $request->certificate_style;
             $certificate->unique_code = $this->generateID();
 
-            if ($certificate->save()) {
+            $countEmail = Certificate::where('email', $request->email)->count();
 
-                $certificateStyle1 = "<!DOCTYPE html>
+            if ($countEmail > 0) {
+                return Redirect::back()->withErrors(['You have already downloaded your certificate', 'The Message']);
+            } else {
+                if ($certificate->save()) {
+
+                    $certificateStyle1 = "<!DOCTYPE html>
 <html lang=\"en\">
 
     <head>
@@ -242,7 +248,7 @@ body {
     </body>
 </html>";
 
-                $certificateStyle2 = "<!DOCTYPE html>
+                    $certificateStyle2 = "<!DOCTYPE html>
 <html lang=\"en\">
 
 <head>
@@ -412,7 +418,7 @@ body {
 
 </html>";
 
-                $certificateStyle3 = "<!DOCTYPE html>
+                    $certificateStyle3 = "<!DOCTYPE html>
 <html lang=\"en\">
     <head>
         <meta charset=\"UTF-8\">
@@ -564,7 +570,7 @@ section main .ceo-wrapper p {
     </body>
 </html>";
 
-                $certificateStyle4 = "<!DOCTYPE html>
+                    $certificateStyle4 = "<!DOCTYPE html>
 <html lang=\"en\">
     <head>
         <meta charset=\"UTF-8\">
@@ -716,7 +722,7 @@ section main .ceo-wrapper p {
     </body>
 </html>";
 
-                $certificateStyle5 = "<!DOCTYPE html>
+                    $certificateStyle5 = "<!DOCTYPE html>
 <html lang=\"en\">
     <head>
         <meta charset=\"UTF-8\">
@@ -868,39 +874,40 @@ section main .ceo-wrapper p {
     </body>
 </html>";
 
-                if ($certificate->certificate_style == 1) {
-                    $displayCertificate = $certificateStyle1;
-                } else if ($certificate->certificate_style == 2) {
-                    $displayCertificate = $certificateStyle2;
-                } else if ($certificate->certificate_style == 3) {
-                    $displayCertificate = $certificateStyle3;
-                } else if ($certificate->certificate_style == 4) {
-                    $displayCertificate = $certificateStyle4;
-                } else if ($certificate->certificate_style == 5) {
-                    $displayCertificate = $certificateStyle5;
-                }
+                    if ($certificate->certificate_style == 1) {
+                        $displayCertificate = $certificateStyle1;
+                    } else if ($certificate->certificate_style == 2) {
+                        $displayCertificate = $certificateStyle2;
+                    } else if ($certificate->certificate_style == 3) {
+                        $displayCertificate = $certificateStyle3;
+                    } else if ($certificate->certificate_style == 4) {
+                        $displayCertificate = $certificateStyle4;
+                    } else if ($certificate->certificate_style == 5) {
+                        $displayCertificate = $certificateStyle5;
+                    }
 
-                try {
-                    // create the API client instance
-                    $client = new \Pdfcrowd\HtmlToPdfClient("kelrob", "fa3c506937b9a51b2be94cdc66605830");
+                    try {
+                        // create the API client instance
+                        $client = new \Pdfcrowd\HtmlToPdfClient("kelrob", "fa3c506937b9a51b2be94cdc66605830");
 
-                    // configure the conversion
-                    $client->setPageSize("A4");
-                    $client->setOrientation("landscape");
+                        // configure the conversion
+                        $client->setPageSize("A4");
+                        $client->setOrientation("landscape");
 
-                    // run the conversion and store the result into the "pdf" variable
-                    $pdf = $client->convertString("$displayCertificate");
+                        // run the conversion and store the result into the "pdf" variable
+                        $pdf = $client->convertString("$displayCertificate");
 
-                    // send the result and set HTTP response headers
-                    return response($pdf)
-                        ->header('Content-Type', 'application/pdf')
-                        ->header('Cache-Control', 'no-cache')
-                        ->header('Accept-Ranges', 'none')
-                        ->header('Content-Disposition', 'attachment; filename="result.pdf"');
-                } catch (\Pdfcrowd\Error $why) {
-                    // send the error in the HTTP response
-                    return response($why->getMessage(), $why->getCode())
-                        ->header('Content-Type', 'text/plain');
+                        // send the result and set HTTP response headers
+                        return response($pdf)
+                            ->header('Content-Type', 'application/pdf')
+                            ->header('Cache-Control', 'no-cache')
+                            ->header('Accept-Ranges', 'none')
+                            ->header('Content-Disposition', 'attachment; filename="result.pdf"');
+                    } catch (\Pdfcrowd\Error $why) {
+                        // send the error in the HTTP response
+                        return response($why->getMessage(), $why->getCode())
+                            ->header('Content-Type', 'text/plain');
+                    }
                 }
             }
 
