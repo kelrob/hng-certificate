@@ -72,15 +72,16 @@ class certificateController extends Controller
                 'owner' => $request->owner,
                 'email' => $request->email,
                 'track' => $request->track,
-                'certificate_style' => $request->certificate_style
+                'certificate_style' => $request->certificate_style,
+                'unique_code' => $this->generateID()
             ];
-
             $certificate = Certificate::where('email', $request->email)->first();
-
             if($certificate){
-                $certificate->update($payload);
+                $certificate->update([
+                    'certificate_style' => $request->certificate_style,
+                ]);
             }else{
-                $certificate = Certificate::create(array_merge($payload, ['unique_code' => $this->generateID() ]));
+                $certificate = Certificate::create($payload);
             }
 
             $code = $certificate->unique_code;
